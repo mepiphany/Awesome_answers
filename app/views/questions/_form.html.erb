@@ -1,0 +1,31 @@
+
+<%= @question.errors.full_messages.join(" ") %>
+
+<%#  if @question is persisted then the form will send PATCH request by adding
+ a hidden field with name_method and value 'patch'. The action url will be
+ question_path(@question) (by convention). The form will prepopulate the
+ fields with existing values for '@question' %>
+
+ <%#  if @question is persisted then the form will send PATCH request by adding
+  a hidden field with name_method and value 'patch'. The action url will be
+  question_path(@question) (by convention). The form will prepopulate the
+  fields with existing values for '@question' %>
+
+<%= form_for @question do |f| %>
+<div>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+<div>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+</div>
+<div>
+  <%= f.label :category_id %>
+  <%= f.collection_select(:category_id, Category.order(:name), :id, :name) %>
+</div>
+<div>
+  <%= f.submit %>
+</div>
+
+<% end %>

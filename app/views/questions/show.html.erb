@@ -1,0 +1,67 @@
+<h1><%= @question.title %></h1>
+
+<p><%= @question.body %></p>
+
+<p>View Count: <%= @question.view_count %></p>
+
+<p><%= @question.created_at %></p>
+
+<p>Category: <%= @question.category_name %></p>
+
+<p>Created by: <%= @question.user_full_name%></p>
+
+<% if can? :edit, @question %>
+<%= link_to "Edit", edit_question_path(@question) %>
+<% end %>
+
+<%# method: :delete asks Rails to send a DELETE request instead of GET which
+is accomplished using Javascript/jQuery %>
+<% if can? :destroy, @question %>
+<%= link_to "Delete",
+            question_path(@question),
+            method: :delete,
+            data: {confirm: "Are you sure?"}%>
+<% end %>
+
+<%# Steps to making form_for answers %>
+
+<h2>Answers</h2>
+<h3>Create an Answer</h3>
+<%# Less ideal one %>
+<%# we can use the form after overriding the 'url' parameter. The downside to it
+is that it won't work for 'edit' situation. This will only work in 'create'
+situation. So we can't reuse it we decide to implement editing answers. %>
+
+<%#= form_for @answer, url: question_answers_path(@question) do |f| %>
+
+<%# end %>
+
+<%= @answer.errors.full_messages.join(", ") %>
+
+<%# ideal way %>
+
+<%# passing an array to the 'form_for' is a better approach for creating nested resources. this
+approach will work for both new / edit situations. So if @answer is not persisted it will send a
+POST request to question_answer_path(@question). And if @answer is persisted it will send a PATCH
+request to question_answer_path(@question,@answer) %>
+<%= form_for [@question, @answer] do |f| %>
+<div>
+  <%= f.label :body  %>
+  <%= f.text_area :body  %>
+</div>
+<%= f.submit  %>
+
+<% end %>
+
+<%# @question is from what we captured from the controller
+answers comes from has_many :answers method%>
+
+<% @question.answers.each do |ans| %>
+<%= ans.body %>
+<% if can? :destory, ans %>
+<%= link_to "Delete", question_answer_path(@question, ans),
+                      method: :delete,
+                      data: { confirm: "Are you Sure?" } %>
+<% end %>
+<hr>
+<% end %>

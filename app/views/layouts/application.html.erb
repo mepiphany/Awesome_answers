@@ -1,0 +1,50 @@
+<!-- <%# this will be used as a default layout. %> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AwesomeAnswers</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- <a href="/hello">Hello</a> |
+<a href="/about">About</a> | -->
+<%# hello_path & about_path are called route helpers. They get generated from
+the content of "routes.rb" and they are methods that can be used in
+all view files and all controllers %>
+
+<!-- <a href="<%= hello_path  %>">Hello</a> | -->
+<!-- <a href="<%= about_path %>">About</a>  | -->
+<!-- <a href="<%= greet_path({name: "john"}) %>"> Greet John</a> -->
+<!-- <a href="<%= greet_path('John') %>"> Greet John</a> -->
+
+<%# link_to is a helper method that is built-in with rails, it's a view helper method
+meaning it's accessible only in the views / view helpers. link_to
+takes a first argument which is the anchor text and a second argument which
+is the 'href' value (url/path). It can take other options as we will see later.
+More info here:
+http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to %>
+
+<%= link_to "Hello", hello_path %> |
+<%= link_to "Subscribe", subscribe_path %> |
+<%= link_to "New question", new_question_path %> |
+<%= link_to "All Questions", root_path %> |
+
+<% if user_signed_in? %>
+  Hello <%= current_user.first_name %>
+  <%= link_to "Sign out", sessions_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign up", new_user_path %>
+<% end %>
+
+
+<%# Both of the lines serves same purpose
+line 39 is a shorter version of calling flash method(like session, built in ruby)  %>
+<%#= flash[:notice] || flash[:alert] %>
+<%= notice || alert %>
+<%= yield %>
+
+</body>
+</html>
