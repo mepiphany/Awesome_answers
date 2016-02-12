@@ -21,8 +21,7 @@ class Ability
     end
 
     can :manage, Answer do |answer|
-      answer.user == user ||
-      answer.question.user == user
+      answer.user == user || answer.question.user == user
     end
 
 

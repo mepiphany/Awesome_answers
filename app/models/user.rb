@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :questions, dependent: :nullify
+  has_many :answers, dependent: :nullify
   # attr_accessor :password
   # attr_accessor :password_confirmation
 

@@ -11,6 +11,7 @@
 
 class Answer < ActiveRecord::Base
   belongs_to :question
+  belongs_to :user
   has_many :comments, dependent: :destroy
 
   # Adding uniqueness: { scope: :question_id } will make sure that an answer's

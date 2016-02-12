@@ -58,7 +58,7 @@ answers comes from has_many :answers method%>
 
 <% @question.answers.each do |ans| %>
 <%= ans.body %>
-<% if can? :destory, ans %>
+<% if can? :destroy, ans %>
 <%= link_to "Delete", question_answer_path(@question, ans),
                       method: :delete,
                       data: { confirm: "Are you Sure?" } %>

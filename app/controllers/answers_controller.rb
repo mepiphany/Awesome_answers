@@ -21,12 +21,9 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to question_path(@question), notice: "Answer created!"
     else
-    render "/questions/show"
+      render "/questions/show"
+    end
   end
-
-
-  end
-
   def destroy
     # question = Question.find params[:question_id]
     # answer = Question.find params[:id]
@@ -35,10 +32,6 @@ class AnswersController < ApplicationController
     unless can? :manage, answer
     answer.destroy
     redirect_to question_path(params[:question_id]), notice: "Answer deleted"
-  end
-
-
-
-
-
+   end
+ end
 end
