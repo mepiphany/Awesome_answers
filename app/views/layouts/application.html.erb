@@ -6,6 +6,15 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <style>
+    body {
+      margin-top: 50px;
+    }
+    .navbar-brand {
+    padding-left: 25px;
+    font-size: 25px;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,11 +35,18 @@ takes a first argument which is the anchor text and a second argument which
 is the 'href' value (url/path). It can take other options as we will see later.
 More info here:
 http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to %>
-
-<%= link_to "Hello", hello_path %> |
-<%= link_to "Subscribe", subscribe_path %> |
-<%= link_to "New question", new_question_path %> |
-<%= link_to "All Questions", root_path %> |
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-left" href="#"><%= image_tag("a_logo.png") %></a>
+    <a class="navbar-brand navbar-left" href="#">Awesome Answers</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Hello", hello_path %></li>
+      <li><%= link_to "Subscribe", subscribe_path %></li>
+      <li><%= link_to "New question", new_question_path %></li>
+      <li><%= link_to "All Questions", root_path %></li>
+    </ul>
+  </div>
+</nav>
 
 <% if user_signed_in? %>
   Hello <%= current_user.first_name %>

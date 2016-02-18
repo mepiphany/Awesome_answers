@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_many :questions, dependent: :nullify
   has_many :answers, dependent: :nullify
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_questions, through: :likes, source: :question
   # attr_accessor :password
   # attr_accessor :password_confirmation
 
@@ -20,6 +23,8 @@ class User < ActiveRecord::Base
  def full_name
    "#{first_name} #{last_name}".titleize #<<< this will capitalize everything inside your string
  end
+
+
 
 
 end

@@ -16,6 +16,7 @@ class Question < ActiveRecord::Base
 
 
 
+
   # This will establish a 'has_many' association with answers. This assumes
   # that your answer model has a 'question_id' integer field that references
   # the question. with has_many 'answers' must be plural (Rails convention).
@@ -29,6 +30,9 @@ class Question < ActiveRecord::Base
   # answers. This generates a single SQL statment with 'INNER JOIN' to
   # accomplish it
   has_many :comments, through: :answers
+
+  has_many :likes, dependent: :destroy
+  has_many :users, through: :likes
 
 
 
@@ -91,7 +95,7 @@ class Question < ActiveRecord::Base
       category.name if category
     end
     # delegate :full_name, to: :user, prefix: true <--------- this is a short to
-    # acheiveing the same goal as below. 
+    # acheiveing the same goal as below.
     def user_full_name
       user.full_name if user
     end
