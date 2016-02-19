@@ -31,6 +31,23 @@
   (<%= @question.likes.count %>)
 
 
+  <hr>
+  <% vote = @question.vote_for(current_user) %>
+ <% if !vote %>
+   <%= link_to "Vote up", question_votes_path(@question, {vote: {is_up: true}}), method: :post  %>
+
+   <%= link_to "Vote down", question_votes_path(@question, {vote: {is_up: false}}), method: :post  %>
+ <% elsif vote.is_up? %>
+   <%= link_to "Remove Vote up", question_vote_path(@question, vote), method: :delete %>
+   <%= link_to "Vote down", question_vote_path(@question, {vote:{is_up: false}}), method: :patch  %>
+ <% else %>
+   <%= link_to "Vote down", question_vote_path(@question, {vote:{is_up: true}}), method: :patch  %>
+   <%= link_to "Remove Vote up", question_vote_path(@question, vote), method: :delete %>
+ <% end %>
+
+
+
+
 <hr>
 <% if can? :edit, @question %>
 <%= link_to "Edit", edit_question_path(@question) %>

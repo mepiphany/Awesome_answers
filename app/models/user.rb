@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :favored_questions, through: :favorites, source: :question
 
+  has_many :votes, dependent: :destroy
+  has_many :voted_questions, through: :votes, source: :question
+
   # attr_accessor :password
   # attr_accessor :password_confirmation
 
