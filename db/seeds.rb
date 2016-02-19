@@ -19,3 +19,7 @@ end
 ["Art", "Science", "Cats", "Sports", "Technology"].each do |cat|
   Category.create(name: cat)
 end
+
+["Coffee", "Hockey", "Snow", "Bow Buns", "Money"].each do |cat|
+  Tag.create(name: cat)
+end

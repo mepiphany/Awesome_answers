@@ -37,6 +37,10 @@ class Question < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :favor_users, through: :favorites, source: :user
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+
 
 
   #first form of validation
