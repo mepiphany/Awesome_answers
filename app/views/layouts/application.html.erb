@@ -49,6 +49,7 @@ http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-li
 </nav>
 
 <% if user_signed_in? %>
+  <%= link_to "Favorites", favorites_path  %>
   Hello <%= current_user.first_name %>
   <%= link_to "Sign out", sessions_path, method: :delete %>
 <% else %>

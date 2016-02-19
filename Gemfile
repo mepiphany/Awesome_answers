@@ -31,6 +31,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'cancancan'
 
+gem "font-awesome-rails"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

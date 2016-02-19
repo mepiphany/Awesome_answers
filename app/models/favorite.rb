@@ -1,8 +1,6 @@
-class Like < ActiveRecord::Base
+class Favorite < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
-  # this ensures that the user_id / question_id combination is unique which
-  # means a user can only like a question once
 
   validates :user_id, :question_id, presence: true
 

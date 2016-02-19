@@ -35,12 +35,17 @@ Rails.application.routes.draw do
     get :search, on: :collection
     patch :mark_done, on: :member
     post :approve
+
+
     # By defining `resources :answers` nested inside `resources :questions`
     # Rails will defined all the answers routes prepended with
     # `/questions/:question_id`. This enables us to have the question_id handy
     # so we can create the answer associated with a question with `question_id`
     resources :answers, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
+
 
   # We do this to avoid triple nesting comments under `resources :answers` within
   # the `resources :questions` as it will be very cumbersome to generate routes
@@ -51,6 +56,7 @@ Rails.application.routes.draw do
   end
 
 
+
   resources :users, only: [:create, :new]
 
   resources :sessions, only: [:new, :create, :destroy] do
@@ -58,7 +64,7 @@ Rails.application.routes.draw do
   end
 
 
-
+resources :favorites, only: [:index]
 
   # resources :questions#(:questions is related to the questions controller)
 

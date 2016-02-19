@@ -34,6 +34,9 @@ class Question < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
 
+  has_many :favorites, dependent: :destroy
+  has_many :favor_users, through: :favorites, source: :user
+
 
 
   #first form of validation
@@ -99,6 +102,16 @@ class Question < ActiveRecord::Base
     def user_full_name
       user.full_name if user
     end
+
+    def like_for(user)
+      likes.find_by_user_id user
+    end
+
+    def favor_for(user)
+      favorites.find_by_user_id user
+    end
+
+
 
 
     private

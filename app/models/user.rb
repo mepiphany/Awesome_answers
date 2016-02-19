@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
   has_many :liked_questions, through: :likes, source: :question
+
+  has_many :favorites, dependent: :destroy
+  has_many :favored_questions, through: :favorites, source: :question
+
   # attr_accessor :password
   # attr_accessor :password_confirmation
 
