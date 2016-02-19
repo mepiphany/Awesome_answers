@@ -122,6 +122,11 @@ class Question < ActiveRecord::Base
       votes.find_by_user_id user
     end
 
+    def vote_result
+      votes.up_count - votes.down_count
+    end
+
+
 
 
 
