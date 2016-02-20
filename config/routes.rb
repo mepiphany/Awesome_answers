@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
+
 
   # The main job of the routes:
   # You map a request to A controller with an action

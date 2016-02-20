@@ -35,6 +35,11 @@ gem "font-awesome-rails"
 
 gem "delayed_job_active_record"
 
+gem "delayed_job_web"
+
+gem "letter_opener", :group => :development
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
