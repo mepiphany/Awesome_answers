@@ -18,12 +18,17 @@ class AnswersController < ApplicationController
     answer_params = params.require(:answer).permit(:body)
     @answer = Answer.new(answer_params)
     @answer.question = @question
+    @answer.user = current_user
+    respond_to do |format|
     if @answer.save
       AnswersMailer.notify_question_owner(@answer).deliver_later
-      redirect_to question_path(@question), notice: "Answer created!"
+      format.html {redirect_to question_path(@question), notice: "Answer created!"}
+      format.js { render :create_success }
     else
-      render "/questions/show"
+      format.html { render "/questions/show" }
+      format.js { render js: "alert('Error happened');"}
     end
+   end
   end
   def destroy
     # question = Question.find params[:question_id]

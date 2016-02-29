@@ -95,7 +95,7 @@ situation. So we can't reuse it we decide to implement editing answers. %>
 approach will work for both new / edit situations. So if @answer is not persisted it will send a
 POST request to question_answer_path(@question). And if @answer is persisted it will send a PATCH
 request to question_answer_path(@question,@answer) %>
-<%= form_for [@question, @answer] do |f| %>
+<%= form_for [@question, @answer], remote: true do |f| %>
 <div>
   <%= f.label :body  %>
   <%= f.text_area :body  %>
@@ -106,13 +106,8 @@ request to question_answer_path(@question,@answer) %>
 
 <%# @question is from what we captured from the controller
 answers comes from has_many :answers method%>
-
-<% @question.answers.each do |ans| %>
-<%= ans.body %>
-<% if can? :destroy, ans %>
-<%= link_to "Delete", question_answer_path(@question, ans),
-                      method: :delete,
-                      data: { confirm: "Are you Sure?" } %>
-<% end %>
-<hr>
-<% end %>
+<div class="answers">
+  <% @question.answers.each do |ans| %>
+    <%= render "/answers/answer", answer: ans %>
+ <% end %>
+</div>

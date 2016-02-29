@@ -1,0 +1,4 @@
+  <%# j is a helper method from rails to escape the Javascript so it doesn't
+  break beacuse of the quotes and new lines characters %>
+  $('.answers').prepend('<%= j render "answer", answer: @answer  %>');
+  $('#answer_body').val("");

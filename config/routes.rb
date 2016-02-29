@@ -64,9 +64,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :new]
 
-  resources :sessions, only: [:new, :create, :destroy] do
-    delete :destroy, on: :collection
-  end
+resources :sessions, only: [:new, :create, :destroy] do
+  delete :destroy, on: :collection
+end
 
 
 resources :favorites, only: [:index]

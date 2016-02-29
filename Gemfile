@@ -39,6 +39,8 @@ gem "delayed_job_web"
 
 gem "letter_opener", :group => :development
 
+gem 'quiet_assets'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
    render :new
   end
  end
- # GET: /question/13
+ # GET: /question/1
   def show
     @question.view_count += 1
     @question.save
@@ -114,8 +114,8 @@ end
     # we must use strong params to only allow updating the title / body
 
     params.require(:question).permit([:title, :body, :category_id, {tag_ids: []}])
-
   end
+
   def find_question
     @question = Question.find params[:id]
   end

@@ -1,0 +1,7 @@
+<%= answer.body %>
+<% if can? :destroy, answer %>
+<%= link_to "Delete", question_answer_path(@question, answer),
+                      method: :delete,
+                      data: { confirm: "Are you Sure?" } %>
+<% end %>
+<hr>
