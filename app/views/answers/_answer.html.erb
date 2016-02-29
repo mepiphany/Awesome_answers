@@ -1,7 +1,15 @@
-<%= answer.body %>
-<% if can? :destroy, answer %>
-<%= link_to "Delete", question_answer_path(@question, answer),
-                      method: :delete,
-                      data: { confirm: "Are you Sure?" } %>
-<% end %>
-<hr>
+<%# dom_id helper method take in an active record mdoel and generates an id
+    that can be used on the page which helpers identifying this div uniquely.
+    It will use snake case name of the model and then it will add the id of the
+    record you passed prepended by _. For example if you pass it `Answer` object
+    with id 5, it will generate `answer_5` %>
+<div id="<%= dom_id(answer) %>">
+  <%= answer.body %>
+  <% if can? :destroy, answer %>
+  <%= link_to "Delete", question_answer_path(@question, answer),
+                        method: :delete,
+                        remote: true,
+                        data: { confirm: "Are you Sure?" } %>
+  <% end %>
+  <hr>
+</div>

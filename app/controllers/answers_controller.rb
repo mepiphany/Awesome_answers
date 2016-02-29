@@ -26,18 +26,20 @@ class AnswersController < ApplicationController
       format.js { render :create_success }
     else
       format.html { render "/questions/show" }
-      format.js { render js: "alert('Error happened');"}
+      format.js { render :create_failure }
     end
    end
   end
   def destroy
     # question = Question.find params[:question_id]
     # answer = Question.find params[:id]
-    answer = Answer.find params[:id]
-    redirect_to root_path, alert: "access denied"
-    unless can? :manage, answer
-    answer.destroy
-    redirect_to question_path(params[:question_id]), notice: "Answer deleted"
+    @answer = Answer.find params[:id]
+    redirect_to root_path, alert: "Access denied" unless can? :manage, @answer
+    @answer.destroy
+    respond_to do |format|
+    format.html { redirect_to question_path(params[:question_id]), notice: "Answer deleted!" }
+    format.js { render } # this renders /app/views/answers/destroy.js.erb
+
    end
  end
 end

@@ -1,0 +1,16 @@
+<%= @answer.errors.full_messages.join(", ") %>
+
+<%# ideal way %>
+
+<%# passing an array to the 'form_for' is a better approach for creating nested resources. this
+approach will work for both new / edit situations. So if @answer is not persisted it will send a
+POST request to question_answer_path(@question). And if @answer is persisted it will send a PATCH
+request to question_answer_path(@question,@answer) %>
+<%= form_for [@question, @answer], remote: true do |f| %>
+<div>
+  <%= f.label :body  %>
+  <%= f.text_area :body  %>
+</div>
+<%= f.submit  %>
+
+<% end %>
