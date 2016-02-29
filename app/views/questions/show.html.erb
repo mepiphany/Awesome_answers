@@ -10,28 +10,16 @@
 
 <p>Created by: <%= @question.user_full_name%></p>
 
-<% favor = @question.favor_for(current_user)%>
-<% if favor %>
-<p><%= link_to "Remove favorites", question_favorite_path(@question, favor), method: :delete %></P>
-<% else %>
-<P><%= link_to "Add favorites", question_favorites_path(@question), method: :post %></P>
-<% end %>
-(<%= @question.favorites.count %>)
+<div id="question-like">
+  <%= render "/likes/question_liked" %>
+</div>
+
+<div id="question-favor">
+  <%= render "/favorites/question_favor" %>
+</div>
 
 <hr>
-
-
-  <%# This is the like object for the 'current_user' and '@question' %>
-  <% like = @question.like_for(current_user) %>
-  <% if like %>
-    <%= link_to "Un-like", question_like_path(@question, like), method: :delete, remote: true %>
-  <% else %>
-  <%= link_to "Like", question_likes_path(@question), method: :post, remote: true  %>
-  <% end %>
-  (<%= @question.likes.count %>)
-
-
-  <hr>
+<hr>
   <% vote = @question.vote_for(current_user) %>
 
   <% if !vote %>

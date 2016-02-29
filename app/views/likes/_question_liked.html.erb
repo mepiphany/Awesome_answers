@@ -1,0 +1,8 @@
+<%# This is the like object for the 'current_user' and '@question' %>
+<% like = @question.like_for(current_user) %>
+<% if like %>
+  <%= link_to "Un-like", question_like_path(@question, like), method: :delete, remote: true %>
+<% else %>
+<%= link_to "Like", question_likes_path(@question), method: :post, remote: true  %>
+<% end %>
+(<%= @question.likes.count %>)

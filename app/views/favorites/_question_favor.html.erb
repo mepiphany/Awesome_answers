@@ -1,0 +1,7 @@
+<% favor = @question.favor_for(current_user)%>
+<% if favor %>
+<p><%= link_to "Remove favorites", question_favorite_path(@question, favor), method: :delete, remote: true %></P>
+<% else %>
+<P><%= link_to "Add favorites", question_favorites_path(@question), method: :post, remote: true %></P>
+<% end %>
+(<%= @question.favorites.count %>)
