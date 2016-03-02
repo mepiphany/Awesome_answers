@@ -10,7 +10,12 @@
 #
 
 class AnswersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:index]
+
+  def index
+    @question = Question.find params[:question_id]
+        render json: @question.answers
+  end
 
   def create
     # to get question id

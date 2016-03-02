@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     # Rails will defined all the answers routes prepended with
     # `/questions/:question_id`. This enables us to have the question_id handy
     # so we can create the answer associated with a question with `question_id`
-    resources :answers, only: [:create, :destroy]
+    resources :answers, only: [:create, :destroy, :index]
     resources :likes, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
     resources :votes, only: [:create, :update, :destroy]
