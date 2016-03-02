@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem "faker", '~> 1.6.1'
 gem "cowsay"
+gem "rack-cors", :require => 'rack/cors'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

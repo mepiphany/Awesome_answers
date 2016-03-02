@@ -71,7 +71,11 @@ class QuestionsController < ApplicationController
   # listings page
   def index
     @questions = Question.all
+  respond_to do |format|
+    format.html { render }
+    format.json { render json: @questions.select(:id, :title, :view_count) }
   end
+end
 
   def edit
     # we need to find the question that will be edited
