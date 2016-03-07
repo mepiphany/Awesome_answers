@@ -10,8 +10,9 @@ class UsersController < ApplicationController
     if @user.save
       # will be signed in until you logout
       sign_in(@user)
-      redirect_to root_path, notice: "User Created"
+      redirect_to root_path, notice: "Account Created!"
     else
+      flash[:alert] = "fail"
       render :new
     end
   end

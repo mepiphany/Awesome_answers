@@ -60,6 +60,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  namespace :api, defaults: {format: :json} do
+  namespace :v1 do
+    resources :questions, only: [:index, :show]
+  end
+end
 
 
   resources :users, only: [:create, :new]
@@ -70,6 +75,13 @@ end
 
 
 resources :favorites, only: [:index]
+
+# namespace will follow the folder structure when making a URL and the action
+# scope will change the URL but not the action
+
+
+
+
 
   # resources :questions#(:questions is related to the questions controller)
 
