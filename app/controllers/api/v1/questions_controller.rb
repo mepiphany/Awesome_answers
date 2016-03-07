@@ -11,6 +11,7 @@ class Api::V1::QuestionsController < ApplicationController
    # all attributes of the question
    # list of answers (JSON array)
    # list of tags (JSON array)
+   render json: @question
   end
 
 end

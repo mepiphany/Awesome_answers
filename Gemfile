@@ -42,6 +42,8 @@ gem "letter_opener", :group => :development
 
 gem 'quiet_assets'
 
+gem 'active_model_serializers'
+
 
 
 # Use Unicorn as the app server
