@@ -76,6 +76,9 @@ end
 
 resources :favorites, only: [:index]
 
+get "/auth/twitter", as: :sign_in_with_twitter
+get "/auth/twitter/callback" => "callbacks#twitter"
+
 # namespace will follow the folder structure when making a URL and the action
 # scope will change the URL but not the action
 

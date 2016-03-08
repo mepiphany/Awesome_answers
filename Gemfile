@@ -44,6 +44,9 @@ gem 'quiet_assets'
 
 gem 'active_model_serializers'
 
+gem 'omniauth-twitter'
+gem "twitter"
+
 
 
 # Use Unicorn as the app server

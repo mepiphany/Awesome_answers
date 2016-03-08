@@ -20,6 +20,11 @@
   <%= f.label :body %>
   <%= f.text_area :body %>
 </div>
+<% if current_user.signed_in_with_twitter? %>
+  <div>
+    <%= f.check_box :tweet_it %> Tweet It.
+  </div>
+<% end %>
 <div>
   <%= f.label :category_id %>
   <%= f.collection_select(:category_id, Category.order(:name), :id, :name) %>

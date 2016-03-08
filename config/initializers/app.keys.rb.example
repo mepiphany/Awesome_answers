@@ -1,0 +1,4 @@
+ENV["email_user_name"] = "XXX"
+ENV["email_password"] =  "XXX"
+ENV['twitter_consumer_key'] = "XXX"
+ENV['twitter_consumer_secret'] = "XXX"

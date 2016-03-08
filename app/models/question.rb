@@ -11,6 +11,8 @@
 #
 
 class Question < ActiveRecord::Base
+  attr_accessor :tweet_it
+
   belongs_to :category
   belongs_to :user
 

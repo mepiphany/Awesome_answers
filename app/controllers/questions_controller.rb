@@ -47,10 +47,20 @@ class QuestionsController < ApplicationController
    # When you .save it will return 'save' or 'false'
    # if i need to access data use render, however, if you need new url to capture info use redirect
    if @question.save
+    #  if @question.tweet_it
+    #    client = Twitter::Rest::Client.new do |config|
+    #      config.consumer_key = ENV["twitter_consumer_key"]
+    #      config.consumer_secret = ENV["twitter_consumer_secret"]
+    #      config.access_token = current_user.twitter_token
+    #      config.access_token_secret = current_user.twitter_secret
+    #    end
+    #    client.update
+
     # All these formats are possible ways to redirect in Rails:
     #  redirect_to question_path({id: @question.id})
     #  redirect_to question_path({id: @question})
     #  redirect_to @question
+
     flash[:notice] = "Question Created Successfully!"
     redirect_to question_path(@question)
    else
@@ -121,7 +131,7 @@ end
     # This is called a Strong parameter
     # we must use strong params to only allow updating the title / body
 
-    params.require(:question).permit([:title, :body, :category_id, {tag_ids: []}])
+    params.require(:question).permit([:title, :body, :category_id, :tweet_it, {tag_ids: []}])
   end
 
   def find_question
