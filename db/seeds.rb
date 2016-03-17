@@ -23,3 +23,4 @@ end
 ["Coffee", "Hockey", "Snow", "Bow Buns", "Money"].each do |cat|
   Tag.create(name: cat)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')

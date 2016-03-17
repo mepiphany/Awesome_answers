@@ -47,6 +47,11 @@ gem 'active_model_serializers'
 gem 'omniauth-twitter'
 gem "twitter"
 
+gem "friendly_id"
+
+gem "devise"
+
+gem 'activeadmin', github: "activeadmin/activeadmin"
 
 
 # Use Unicorn as the app server
@@ -69,6 +74,7 @@ group :development do
   gem "interactive_editor"
   gem "hirb"
   gem "rails-erd"
+  gem 'pry-rails'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

@@ -5,12 +5,12 @@ class CallbacksController < ApplicationController
     omniauth_data = request.env['omniauth.auth']
     user = User.where(provider: "twitter", uid: omniauth_data["uid"]).first
     if user
-      sign_in(user)
+      user_sign_in(user)
       redirect_to root_path, notice: "Sign In!"
     else
       # Create the user account
       user = User.create_from_twitter(omniauth_data)
-      sign_in(user)
+      user_sign_in(user)
       redirect_to root_path, notice: "Signed In!"
     end
   end

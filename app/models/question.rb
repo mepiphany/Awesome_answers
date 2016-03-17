@@ -11,6 +11,8 @@
 #
 
 class Question < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
   attr_accessor :tweet_it
 
   belongs_to :category

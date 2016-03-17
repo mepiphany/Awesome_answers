@@ -47,14 +47,15 @@ class QuestionsController < ApplicationController
    # When you .save it will return 'save' or 'false'
    # if i need to access data use render, however, if you need new url to capture info use redirect
    if @question.save
-    #  if @question.tweet_it
-    #    client = Twitter::Rest::Client.new do |config|
-    #      config.consumer_key = ENV["twitter_consumer_key"]
-    #      config.consumer_secret = ENV["twitter_consumer_secret"]
-    #      config.access_token = current_user.twitter_token
-    #      config.access_token_secret = current_user.twitter_secret
-    #    end
-    #    client.update
+     if @question.tweet_it
+         client = Twitter::REST::Client.new do |config|
+           config.consumer_key        = ENV["twitter_consumer_key"]
+           config.consumer_secret     = ENV["twitter_consumer_secret"]
+           config.access_token        = current_user.twitter_token
+           config.access_token_secret = current_user.twitter_secret
+         end
+         client.update("New Question: #{@question.title}")
+       end
 
     # All these formats are possible ways to redirect in Rails:
     #  redirect_to question_path({id: @question.id})
@@ -135,7 +136,7 @@ end
   end
 
   def find_question
-    @question = Question.find params[:id]
+    @question = Question.friendly.find params[:id]
   end
 
   def authenticate_user
