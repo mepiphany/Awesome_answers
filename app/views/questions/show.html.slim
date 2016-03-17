@@ -1,0 +1,58 @@
+h1= @question.title
+
+p= @question.body
+
+p
+  | View Count: #{@question.view_count}
+
+p= @question.created_at
+
+p
+  | Category: #{@question.category_name}
+
+p
+  | Created By: #{@question.user_full_name}
+
+hr
+#question-like= render "/likes/question_like"
+hr
+#question-favourite= render "favourites/question_favourite"
+
+- vote = @question.vote_for(current_user)
+
+- if !vote
+  = link_to "Vote Up", question_votes_path(@question, {vote: {is_up: true}}),
+                          method: :post
+  | (#{@question.vote_result})
+  = link_to "Vote Down", question_votes_path(@question, {vote: {is_up: false}}),
+                          method: :post
+- elsif vote.is_up?
+  = link_to "Remove Vote Up", question_vote_path(@question, vote),
+                          method: :delete
+  | (#{@question.vote_result})
+  = link_to "Vote Down", question_vote_path(@question, vote, {vote: {is_up: false}}),
+                          method: :patch
+- else
+  = link_to "Vote Up", question_vote_path(@question, vote, {vote: {is_up: true}}),
+                        method: :patch
+  | (#{@question.vote_result})
+  = link_to "Remove Vote Down", question_vote_path(@question, vote),
+                        method: :delete
+hr
+- if can? :edit, @question
+  = link_to "Edit", edit_question_path(@question)
+
+- if can? :destroy, @question
+  -#  method: :delete asks Rails to send a DELETE request instead of GET which is accomplished using Javascript/jQuery
+  = link_to "Delete",
+              question_path(@question),
+              method: :delete,
+              data: {confirm: "Are you sure?"}
+
+h2 Answers
+h3 Create an Answer
+#answer-form= render "/answers/form"
+
+.answers
+  - @question.answers.each do |ans|
+    = render "/answers/answer", answer: ans
