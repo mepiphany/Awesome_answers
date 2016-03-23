@@ -10,7 +10,9 @@
 #
 
 class Answer < ActiveRecord::Base
-  belongs_to :question
+  # This will force the question to update its updated_at field everytime
+  # an answer is created
+  belongs_to :question, touch: true
   belongs_to :user
   has_many :comments, dependent: :destroy
 

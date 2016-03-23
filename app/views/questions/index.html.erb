@@ -1,9 +1,14 @@
 <h1>All Questions(<%= @questions.length %>)</h1>
-  <% @questions.each do |question| %>
+
+<% @questions.each do |question| %>
+<%= cache ["listing",question] do %>
 <%# link to question pages  %>
 <table class="table table-striped">
-   <tr>
-     <td><%= link_to question.title, question_path(question) %></td>
-   </tr>
+  <tr>
+    <td><%= link_to question.title, question_path(question) %></td>
+    <td>created by: <%= question.user_full_name %></td>
+    <td>counts: <%= question.answers.count %></td>
+  </tr>
 </table>
+<% end %>
 <% end %>

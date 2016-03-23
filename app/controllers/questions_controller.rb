@@ -137,6 +137,8 @@ end
 
   def find_question
     @question = Question.friendly.find params[:id]
+    # Method of eager_load
+    # @question = Question.includes(:answers => :user).references(:answers).find(params[:id])
   end
 
   def authenticate_user
